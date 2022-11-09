@@ -104,6 +104,8 @@ attivare l’immagine corrispondente.*/
 for(let i=0; i < allImages.length; i++){
     allImages[i].addEventListener("click", function(){
         imgToShow.src = allImages[i].src;
+        infoContentTitle.innerHTML = images[i].title;
+        infoContentDescription.innerHTML = images[i].text;
     });
 }
 

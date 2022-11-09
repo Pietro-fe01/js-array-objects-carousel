@@ -53,7 +53,9 @@ body{
     position: absolute;
     right: 0;
     bottom: 0;
-    padding: 1.25rem;
+    padding: 0 15px 15px 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
 }
 
 /*--------------------
