@@ -15,12 +15,19 @@ body{
     height: 100vh;
 }
 
+/*------------
+    UTILITIES 
+-------------*/
+.selected-border{
+    border: 1px solid white;
+}
+
 /*--------------
     CAROSELLO 
 ---------------*/
 .carosello-container{
     background-color: red;
-    width: 800px;
+    width: 900px;
     display: flex;
 }
 
@@ -28,7 +35,7 @@ body{
     CAROSELLO LEFT
 ---------------------*/
 .carosello-left{
-    width: 80%;
+    width: calc(100% - 150px);
     position: relative;
     color: white;
 }
@@ -37,20 +44,24 @@ body{
     width: 100%;
     height: 400px;
     display: block;
+    object-fit: cover;
+    object-position: center;
 }
 
 .carosello-left .info-content{
     text-align: right;
     position: absolute;
-    right: 1.25rem;
-    bottom: 1.25rem;
+    right: 0;
+    bottom: 0;
+    padding: 1.25rem;
 }
 
 /*--------------------
     CAROSELLO RIGHT
 ---------------------*/
 .carosello-right{
-    width: 20%;
+    width: 9.375rem;
+    position: relative;
 }
 
 .carosello-right img{
@@ -59,4 +70,27 @@ body{
     height: calc(400px / 5);
     object-fit: cover;
     object-position: center;
+}
+
+/*--------------------
+    CHEVRON UP/DOWN
+---------------------*/
+.ms-arrow-up,
+.ms-arrow-down{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0px);
+    background-color: rgba(204, 204, 204, 0.8);
+    color: white;
+    border-radius: 50%;
+    padding: .25rem;
+    cursor: pointer;
+}
+
+.ms-arrow-up{
+    top: .3125rem;
+}
+
+.ms-arrow-down{
+    bottom: .3125rem;
 }

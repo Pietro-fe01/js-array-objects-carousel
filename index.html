@@ -6,26 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carosello Array di Oggetti</title>
     <link rel="stylesheet" href="css/style.css">
+    <!-- font-awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- /font-awesome CDN -->
 </head>
 <body>
     <div class="carosello-container">
         <!-- Carosello sx -->
         <div class="carosello-left">
-            <img src="img/02.webp" alt="">
+            <!--Img showed-->
+            <img id="img-to-show" src="img/01.webp" alt=""> 
             <div class="info-content">
-                <h1 class="info-content__title">Ratchet & Clank: Rift Apart</h1>
-                <p class="info-content__description">Go dimension-hopping with Ratchet and Clank as they take on an evil emperor from another reality.</p>
+                <!--Title-->
+                <h1 class="info-content__title">Marvel\'s Spiderman Miles Morale</h1> 
+                <!--Description-->
+                <p class="info-content__description">Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.</p>
             </div>
         </div>
         <!-- /Carosello sx -->
 
         <!-- Carosello dx -->
         <div class="carosello-right">
-            <img src="img/01.webp" alt="">
-            <img src="img/02.webp" alt="">
-            <img src="img/03.webp" alt="">
-            <img src="img/04.webp" alt="">
-            <img src="img/05.webp" alt="">
+            <i class="ms-arrow-up fa-solid fa-chevron-up"></i>
+            <img id="img-1" class="selected-border" src="img/01.webp" alt="">
+            <img id="img-2" src="img/02.webp" alt="">
+            <img id="img-3" src="img/03.webp" alt="">
+            <img id="img-4" src="img/04.webp" alt="">
+            <img id="img-5" src="img/05.webp" alt="">
+            <i class="ms-arrow-down fa-solid fa-chevron-down"></i>
         </div>
         <!-- /Carosello dx -->
     </div>
