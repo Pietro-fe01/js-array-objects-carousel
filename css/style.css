@@ -35,7 +35,7 @@ body{
     CAROSELLO LEFT
 ---------------------*/
 .carosello-left{
-    width: calc(100% - 150px);
+    width: calc(100% - 160px);
     position: relative;
     color: white;
 }
@@ -60,7 +60,7 @@ body{
     CAROSELLO RIGHT
 ---------------------*/
 .carosello-right{
-    width: 9.375rem;
+    width: 160px;
     position: relative;
 }
 

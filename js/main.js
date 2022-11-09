@@ -101,13 +101,65 @@ const arrowDownButton = document.querySelector(".ms-arrow-down").addEventListene
 /*
 BONUS 1:
 Aggiungere le thumbnails (sottoforma di miniatura) ed al click
- attivare l’immagine corrispondente.
-
-BONUS 2:
-Aggiungere funzionalità di autoplay: dopo un certo periodo di
-tempo (3 secondi) l’immagine attiva dovrà cambiare alla
- successiva.
-
+attivare l’immagine corrispondente.
 BONUS 3:
 Aggiungere bottoni di start/stop e di inversione del 
-meccanismo di autoplay.  */
+meccanismo di autoplay. */
+
+
+/* BONUS 2:
+Aggiungere funzionalità di autoplay: dopo un certo periodo di
+tempo (3 secondi) l’immagine attiva dovrà cambiare alla
+successiva.*/
+let automaticShowing = setInterval(function () {
+    if (currentImgIndex === images.length - 1){
+        currentImgIndex = 0;
+    } else {
+        currentImgIndex += 1;        
+    }
+    imgToShow.src = images[currentImgIndex].image;
+    infoContentTitle.innerHTML = images[currentImgIndex].title;
+    infoContentDescription.innerHTML = images[currentImgIndex].text;
+
+    if(selectedImage === 0){
+        allImages[selectedImage].classList.toggle("selected-border");
+        allImages[selectedImage+=1].classList.toggle("selected-border");
+    } else {
+        allImages[selectedImage].classList.toggle("selected-border");
+        if(selectedImage === 4){
+            selectedImage = -1;
+        }
+        allImages[selectedImage+=1].classList.toggle("selected-border");
+    }    
+}, 3000);
+
+let caroselloRightEnter = document.querySelector(".carosello-right").addEventListener("mouseover", function(){
+    clearInterval(automaticShowing)
+});
+
+let caroselloRightLeave = document.querySelector(".carosello-right").addEventListener("mouseout", function(){
+    automaticShowing = setInterval(function () {
+        if (currentImgIndex === images.length - 1){
+            currentImgIndex = 0;
+        } else {
+            currentImgIndex += 1;        
+        }
+        imgToShow.src = images[currentImgIndex].image;
+        infoContentTitle.innerHTML = images[currentImgIndex].title;
+        infoContentDescription.innerHTML = images[currentImgIndex].text;
+    
+        if(selectedImage === 0){
+            allImages[selectedImage].classList.toggle("selected-border");
+            allImages[selectedImage+=1].classList.toggle("selected-border");
+        } else {
+            allImages[selectedImage].classList.toggle("selected-border");
+            if(selectedImage === 4){
+                selectedImage = -1;
+            }
+            allImages[selectedImage+=1].classList.toggle("selected-border");
+        }    
+    }, 3000);
+});
+
+
+
