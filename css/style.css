@@ -6,3 +6,57 @@
     padding: 0;
     margin: 0;  
 }
+
+body{
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/*--------------
+    CAROSELLO 
+---------------*/
+.carosello-container{
+    background-color: red;
+    width: 800px;
+    display: flex;
+}
+
+/*--------------------
+    CAROSELLO LEFT
+---------------------*/
+.carosello-left{
+    width: 80%;
+    position: relative;
+    color: white;
+}
+
+.carosello-left img{
+    width: 100%;
+    height: 400px;
+    display: block;
+}
+
+.carosello-left .info-content{
+    text-align: right;
+    position: absolute;
+    right: 1.25rem;
+    bottom: 1.25rem;
+}
+
+/*--------------------
+    CAROSELLO RIGHT
+---------------------*/
+.carosello-right{
+    width: 20%;
+}
+
+.carosello-right img{
+    display: block;
+    width: 100%;
+    height: calc(400px / 5);
+    object-fit: cover;
+    object-position: center;
+}
