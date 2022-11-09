@@ -8,7 +8,7 @@
 }
 
 body{
-    background-color: black;
+    background: linear-gradient(143deg, rgba(0,0,0,1) 0%, rgba(41,46,73,1) 46%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,14 +19,14 @@ body{
     UTILITIES 
 -------------*/
 .selected-border{
-    border: 1px solid white;
+    border: 2px solid white;
+    filter: none !important;
 }
 
 /*--------------
     CAROSELLO 
 ---------------*/
 .carosello-container{
-    background-color: red;
     width: 900px;
     display: flex;
 }
@@ -70,6 +70,7 @@ body{
     height: calc(400px / 5);
     object-fit: cover;
     object-position: center;
+    filter: opacity(30%);
 }
 
 /*--------------------
@@ -85,6 +86,7 @@ body{
     border-radius: 50%;
     padding: .25rem;
     cursor: pointer;
+    z-index: 100;
 }
 
 .ms-arrow-up{

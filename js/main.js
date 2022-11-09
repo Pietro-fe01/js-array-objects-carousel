@@ -41,13 +41,21 @@ const images = [
 Ora rimuoviamo i contenuti statici e usiamo l’array di oggetti letterali per popolare dinamicamente il carosello.
 Al click dell'utente sulle frecce verso l'alto o il basso, 
 l'immagine attiva diventerà visibile e dovremo aggiungervi 
-titolo e testo.*/
+titolo e testo.
+
+Milestone 2:
+Aggiungere il **ciclo infinito** del carosello. Ovvero se la 
+miniatura attiva è la prima e l'utente clicca la freccia 
+verso l'alto, la miniatura che deve attivarsi sarà l'ultima 
+e viceversa per l'ultima miniatura se l'utente clicca la 
+freccia verso il basso.*/
+
 const imgToShow = document.getElementById("img-to-show");
 const infoContentTitle = document.querySelector(".info-content__title");
 const infoContentDescription = document.querySelector(".info-content__description");
+const allImages = document.querySelectorAll(".carosello-right img");
 let currentImgIndex = 0;
-
-
+let selectedImage = 0;
 
 const arrowUpButton = document.querySelector(".ms-arrow-up").addEventListener("click", function(){
     if (currentImgIndex === 0){
@@ -58,6 +66,14 @@ const arrowUpButton = document.querySelector(".ms-arrow-up").addEventListener("c
     imgToShow.src = images[currentImgIndex].image;
     infoContentTitle.innerHTML = images[currentImgIndex].title;
     infoContentDescription.innerHTML = images[currentImgIndex].text;
+
+    if(selectedImage === 0){
+        allImages[selectedImage].classList.toggle("selected-border");
+        allImages[selectedImage = 4].classList.toggle("selected-border");
+    } else {
+        allImages[selectedImage].classList.toggle("selected-border");
+        allImages[selectedImage-=1].classList.toggle("selected-border");
+    }    
 });
 
 const arrowDownButton = document.querySelector(".ms-arrow-down").addEventListener("click", function(){
@@ -69,15 +85,20 @@ const arrowDownButton = document.querySelector(".ms-arrow-down").addEventListene
     imgToShow.src = images[currentImgIndex].image;
     infoContentTitle.innerHTML = images[currentImgIndex].title;
     infoContentDescription.innerHTML = images[currentImgIndex].text;
+
+    if(selectedImage === 0){
+        allImages[selectedImage].classList.toggle("selected-border");
+        allImages[selectedImage+=1].classList.toggle("selected-border");
+    } else {
+        allImages[selectedImage].classList.toggle("selected-border");
+        if(selectedImage === 4){
+            selectedImage = -1;
+        }
+        allImages[selectedImage+=1].classList.toggle("selected-border");
+    }    
 });
 
-/*Milestone 2:
-Aggiungere il **ciclo infinito** del carosello. Ovvero se la 
-miniatura attiva è la prima e l'utente clicca la freccia 
-verso l'alto, la miniatura che deve attivarsi sarà l'ultima 
-e viceversa per l'ultima miniatura se l'utente clicca la 
-freccia verso il basso.
-
+/*
 BONUS 1:
 Aggiungere le thumbnails (sottoforma di miniatura) ed al click
  attivare l’immagine corrispondente.
