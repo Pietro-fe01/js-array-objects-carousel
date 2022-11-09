@@ -98,14 +98,14 @@ const arrowDownButton = document.querySelector(".ms-arrow-down").addEventListene
     }    
 });
 
-/*
-BONUS 1:
+/*BONUS 1:
 Aggiungere le thumbnails (sottoforma di miniatura) ed al click
-attivare l’immagine corrispondente.
-BONUS 3:
-Aggiungere bottoni di start/stop e di inversione del 
-meccanismo di autoplay. */
-
+attivare l’immagine corrispondente.*/
+for(let i=0; i < allImages.length; i++){
+    allImages[i].addEventListener("click", function(){
+        imgToShow.src = allImages[i].src;
+    });
+}
 
 /* BONUS 2:
 Aggiungere funzionalità di autoplay: dopo un certo periodo di
@@ -162,4 +162,6 @@ let caroselloRightLeave = document.querySelector(".carosello-right").addEventLis
 });
 
 
-
+/* BONUS 3:
+Aggiungere bottoni di start/stop e di inversione del 
+meccanismo di autoplay.*/

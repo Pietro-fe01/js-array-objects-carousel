@@ -71,6 +71,7 @@ body{
     object-fit: cover;
     object-position: center;
     filter: opacity(30%);
+    cursor: zoom-in;
 }
 
 /*--------------------
