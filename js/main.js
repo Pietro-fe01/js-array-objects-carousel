@@ -1,18 +1,5 @@
 "use strict";
 
-/* Consegna:
-Dato un array di oggetti letterali con:
- - url dell’immagine
- - titolo
- - descrizione
-Creare un carosello come nella foto allegata.
-
-Milestone 0:
-Come nel primo carosello realizzato, focalizziamoci prima
-sulla creazione del markup statico: costruiamo il container
-e inseriamo l'immagine grande in modo da poter stilare lo
-slider.*/
-
 const images = [
     {
         image: 'img/01.webp',
@@ -37,19 +24,48 @@ const images = [
     }
 ];
 
-/* Milestone 1:
-Ora rimuoviamo i contenuti statici e usiamo l’array di oggetti letterali per popolare dinamicamente il carosello.
-Al click dell'utente sulle frecce verso l'alto o il basso, 
-l'immagine attiva diventerà visibile e dovremo aggiungervi 
-titolo e testo.
+/*------------
+    FUNCTION 
+-------------*/
+function changeSlides(direction){
+    if(direction === "up"){
+        if(selectedImage === 0){
+            allImages[selectedImage].classList.toggle("selected-border");
+            allImages[selectedImage = images.length - 1].classList.toggle("selected-border");
+        } else {
+            allImages[selectedImage].classList.toggle("selected-border");
+            allImages[selectedImage -= 1].classList.toggle("selected-border");
+        }    
+        if (currentImgIndex === 0){
+            currentImgIndex = images.length - 1;
+        } else {
+            currentImgIndex -= 1;        
+        }
+    } else if (direction === 'down') {
+        if(selectedImage === 0){
+            allImages[selectedImage].classList.toggle("selected-border");
+            allImages[selectedImage += 1].classList.toggle("selected-border");
+        } else {
+            allImages[selectedImage].classList.toggle("selected-border");
+            if(selectedImage === images.length - 1){
+                selectedImage = -1;
+            }
+            allImages[selectedImage += 1].classList.toggle("selected-border");
+        }
+        if (currentImgIndex === images.length - 1){
+            currentImgIndex = 0;
+        } else {
+            currentImgIndex += 1;        
+        }
+    }
+    imgToShow.src = images[currentImgIndex].image;
+    infoContentTitle.innerHTML = images[currentImgIndex].title;
+    infoContentDescription.innerHTML = images[currentImgIndex].text;
+};
 
-Milestone 2:
-Aggiungere il **ciclo infinito** del carosello. Ovvero se la 
-miniatura attiva è la prima e l'utente clicca la freccia 
-verso l'alto, la miniatura che deve attivarsi sarà l'ultima 
-e viceversa per l'ultima miniatura se l'utente clicca la 
-freccia verso il basso.*/
-
+/*------------
+    CONFIG 
+-------------*/
 const imgToShow = document.getElementById("img-to-show");
 const infoContentTitle = document.querySelector(".info-content__title");
 const infoContentDescription = document.querySelector(".info-content__description");
@@ -57,50 +73,17 @@ const allImages = document.querySelectorAll(".carosello-right img");
 let currentImgIndex = 0;
 let selectedImage = 0;
 
+/*------------
+    MAIN 
+-------------*/
 const arrowUpButton = document.querySelector(".ms-arrow-up").addEventListener("click", function(){
-    if (currentImgIndex === 0){
-        currentImgIndex = images.length - 1;
-    } else {
-        currentImgIndex -= 1;        
-    }
-    imgToShow.src = images[currentImgIndex].image;
-    infoContentTitle.innerHTML = images[currentImgIndex].title;
-    infoContentDescription.innerHTML = images[currentImgIndex].text;
-
-    if(selectedImage === 0){
-        allImages[selectedImage].classList.toggle("selected-border");
-        allImages[selectedImage = 4].classList.toggle("selected-border");
-    } else {
-        allImages[selectedImage].classList.toggle("selected-border");
-        allImages[selectedImage-=1].classList.toggle("selected-border");
-    }    
+    changeSlides('up');
 });
 
 const arrowDownButton = document.querySelector(".ms-arrow-down").addEventListener("click", function(){
-    if (currentImgIndex === images.length - 1){
-        currentImgIndex = 0;
-    } else {
-        currentImgIndex += 1;        
-    }
-    imgToShow.src = images[currentImgIndex].image;
-    infoContentTitle.innerHTML = images[currentImgIndex].title;
-    infoContentDescription.innerHTML = images[currentImgIndex].text;
-
-    if(selectedImage === 0){
-        allImages[selectedImage].classList.toggle("selected-border");
-        allImages[selectedImage+=1].classList.toggle("selected-border");
-    } else {
-        allImages[selectedImage].classList.toggle("selected-border");
-        if(selectedImage === 4){
-            selectedImage = -1;
-        }
-        allImages[selectedImage+=1].classList.toggle("selected-border");
-    }    
+    changeSlides('down');
 });
 
-/*BONUS 1:
-Aggiungere le thumbnails (sottoforma di miniatura) ed al click
-attivare l’immagine corrispondente.*/
 for(let i=0; i < allImages.length; i++){
     allImages[i].addEventListener("click", function(){
         imgToShow.src = allImages[i].src;
@@ -109,61 +92,19 @@ for(let i=0; i < allImages.length; i++){
     });
 }
 
-/* BONUS 2:
-Aggiungere funzionalità di autoplay: dopo un certo periodo di
-tempo (3 secondi) l’immagine attiva dovrà cambiare alla
-successiva.*/
+/*-----------------
+    AUTO CHANGE 
+------------------*/
 let automaticShowing = setInterval(function () {
-    if (currentImgIndex === images.length - 1){
-        currentImgIndex = 0;
-    } else {
-        currentImgIndex += 1;        
-    }
-    imgToShow.src = images[currentImgIndex].image;
-    infoContentTitle.innerHTML = images[currentImgIndex].title;
-    infoContentDescription.innerHTML = images[currentImgIndex].text;
-
-    if(selectedImage === 0){
-        allImages[selectedImage].classList.toggle("selected-border");
-        allImages[selectedImage+=1].classList.toggle("selected-border");
-    } else {
-        allImages[selectedImage].classList.toggle("selected-border");
-        if(selectedImage === 4){
-            selectedImage = -1;
-        }
-        allImages[selectedImage+=1].classList.toggle("selected-border");
-    }    
+    changeSlides('down');
 }, 3000);
 
 let caroselloRightEnter = document.querySelector(".carosello-right").addEventListener("mouseover", function(){
-    clearInterval(automaticShowing)
+    clearInterval(automaticShowing);
 });
 
 let caroselloRightLeave = document.querySelector(".carosello-right").addEventListener("mouseout", function(){
     automaticShowing = setInterval(function () {
-        if (currentImgIndex === images.length - 1){
-            currentImgIndex = 0;
-        } else {
-            currentImgIndex += 1;        
-        }
-        imgToShow.src = images[currentImgIndex].image;
-        infoContentTitle.innerHTML = images[currentImgIndex].title;
-        infoContentDescription.innerHTML = images[currentImgIndex].text;
-    
-        if(selectedImage === 0){
-            allImages[selectedImage].classList.toggle("selected-border");
-            allImages[selectedImage+=1].classList.toggle("selected-border");
-        } else {
-            allImages[selectedImage].classList.toggle("selected-border");
-            if(selectedImage === 4){
-                selectedImage = -1;
-            }
-            allImages[selectedImage+=1].classList.toggle("selected-border");
-        }    
+        changeSlides('down');
     }, 3000);
 });
-
-
-/* BONUS 3:
-Aggiungere bottoni di start/stop e di inversione del 
-meccanismo di autoplay.*/
