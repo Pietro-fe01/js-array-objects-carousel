@@ -76,6 +76,10 @@ let selectedImage = 0;
 /*------------
     MAIN 
 -------------*/
+imgToShow.src = images[currentImgIndex].image;
+infoContentTitle.innerHTML = images[currentImgIndex].title;
+infoContentDescription.innerHTML = images[currentImgIndex].text;
+
 const arrowUpButton = document.querySelector(".ms-arrow-up").addEventListener("click", function(){
     changeSlides('up');
 });
